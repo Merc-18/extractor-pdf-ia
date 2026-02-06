@@ -9,7 +9,11 @@ import re
 # ============================================
 # CONFIGURACIÓN - PEGA TU API KEY AQUÍ
 # ============================================
-API_KEY = "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"
+try:
+       API_KEY = st.secrets["ANTHROPIC_API_KEY"]
+   except:
+       API_KEY = ""
+       st.error("⚠️ API Key no configurada...")
 
 # ============================================
 # PALETA DE COLORES
@@ -578,4 +582,5 @@ if 'fields' in st.session_state:
         st.json(fields)
 
 else:
+
     st.info("👆 Sube un PDF y haz clic en 'Extraer campos con IA' para comenzar")
