@@ -9,11 +9,18 @@ import re
 # ============================================
 # CONFIGURACIÓN - PEGA TU API KEY AQUÍ
 # ============================================
-    try:
-       API_KEY = st.secrets["ANTHROPIC_API_KEY"]
-    except:
-       API_KEY = ""
-       st.error("⚠️ API Key no configurada...")
+
+try:                                                
+    API_KEY = st.secrets["ANTHROPIC_API_KEY"]
+    st.sidebar.success(f"✅ API Key cargada correctamente (longitud: {len(API_KEY)})")
+except KeyError as e:
+    API_KEY = ""
+    st.sidebar.error(f"❌ Error: No se encontró la key en secrets: {e}")
+    st.stop()
+except Exception as e:
+    API_KEY = ""
+    st.sidebar.error(f"❌ Error inesperado: {e}")
+    st.stop()
 
 # ============================================
 # PALETA DE COLORES
@@ -584,4 +591,5 @@ if 'fields' in st.session_state:
 else:
 
     st.info("👆 Sube un PDF y haz clic en 'Extraer campos con IA' para comenzar")
+
 
