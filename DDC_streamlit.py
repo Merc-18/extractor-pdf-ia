@@ -9,9 +9,9 @@ import re
 # ============================================
 # CONFIGURACIÓN - PEGA TU API KEY AQUÍ
 # ============================================
-try:
+    try:
        API_KEY = st.secrets["ANTHROPIC_API_KEY"]
-   except:
+    except:
        API_KEY = ""
        st.error("⚠️ API Key no configurada...")
 
@@ -584,3 +584,4 @@ if 'fields' in st.session_state:
 else:
 
     st.info("👆 Sube un PDF y haz clic en 'Extraer campos con IA' para comenzar")
+
